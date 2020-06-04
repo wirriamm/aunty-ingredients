@@ -1,0 +1,8 @@
+<ul>
+  <% @listings.each do |listing| %>
+    <li> <%= listing.name %></li>
+    <%= link_to "More details", listing_path(listing)  %>
+  <% end %>
+</ul>
+
+<%= link_to "New Listing", new_listing_path %>
