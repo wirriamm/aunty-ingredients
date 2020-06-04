@@ -1,0 +1,15 @@
+
+<%= link_to "Edit", edit_listing_path(@listing)  %>
+<%= link_to "Delete", listing_path(@listing), method: :delete  %>
+<br>
+
+Listing: <%= @listing.name %><br>
+Description: <%= @listing.description %><br>
+Quantity Available: <%= @listing.quantity_available %><br>
+Price per Quantity: $<%= @listing.listing_price_pq %><br>
+<br>
+Sold by:<%= @listing.user.email %>
+<br>
+
+<%= link_to "Home", listings_path  %>
+
