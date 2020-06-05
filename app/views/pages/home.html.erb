@@ -1,2 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h2>Welcome to Aunty's Market</h2>
+
+<% @listings.each do |listing| %>
+  <div class="p-3">
+    <%= render 'shared/card', listing: listing %>
+  </div>
+<% end %>
+
+<%= link_to "New Listing", new_listing_path %>
