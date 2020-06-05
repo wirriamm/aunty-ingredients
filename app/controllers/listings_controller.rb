@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   # before_action :check_user?, only: [ :edit ]
 
   def index
-    @listings = Listing.all
+    @listings = Listing.where(user: current_user)
   end
 
   def show
@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(params.require(:listing).permit(:name, :description, :quantity_available, :listing_price_pq))
+    @listing = Listing.new(listing_params)
     @listing.user = current_user
     @listing.save
     if @listing.save
@@ -38,7 +38,7 @@ class ListingsController < ApplicationController
 
     # @listing.update(params.require(:listing).permit(:name, :description, :quantity_available, :listing_price_pq)) if check_user?
 
-    if @listing.update(params.require(:listing).permit(:name, :description, :quantity_available, :listing_price_pq))
+    if @listing.update(listing_params)
       redirect_to listing_path(@listing)
     else
       render "edit"
@@ -50,11 +50,16 @@ class ListingsController < ApplicationController
     @listing.destroy
     redirect_to listings_path
   end
+
+  private
+
+  def listing_params
+    params.require(:listing).permit(:name, :description, :quantity_available, :listing_price_pq, :photo)
+  end
+
+  def check_user?
+    @listing = Listing.find(params[:id])
+    current_user == @listing.user
+  end
 end
 
-private
-
-def check_user?
-  @listing = Listing.find(params[:id])
-  current_user == @listing.user
-end

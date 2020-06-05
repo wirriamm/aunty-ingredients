@@ -1,8 +1,9 @@
-<ul>
-  <% @listings.each do |listing| %>
-    <li> <%= listing.name %></li>
-    <%= link_to "More details", listing_path(listing)  %>
-  <% end %>
-</ul>
+<h2>Your Listings</h2>
+
+<% @listings.each do |listing| %>
+  <div class="p-3">
+    <%= render 'shared/card', listing: listing %>
+  </div>
+<% end %>
 
 <%= link_to "New Listing", new_listing_path %>
