@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       # quantity_ordered: params[:quantity_ordered]
       )
     # temporarily create a simple form for quantity
-    @order.quantity_ordered = 7
+    @order.quantity_ordered = 1
     if @order.quantity_ordered > @order.listing.quantity_available
       redirect_to listing_path(listing), alert: "Only #{@order.listing.quantity_available} of #{@order.listing.name} is available. Please change the quantity of your order."
     else
