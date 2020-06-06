@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to :user
+  has_many :orders
   has_one_attached :photo
 
   validates :name, presence: true
