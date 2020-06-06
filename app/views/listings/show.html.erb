@@ -13,9 +13,7 @@ Price per Quantity: $<%= @listing.listing_price_pq %><br>
 Sold by:<%= @listing.user.email %>
 <br>
 
-<%= form_for @order, url: listing_orders_path(@listing) do |f| %>
+<%= form_for ([@listing, @order]) do |f| %>
   <%= f.number_field :quantity_ordered %>
   <%= f.submit "Add to cart" %>
 <% end %>
-
-<%= link_to "Add to cart", listing_orders_path(@listing), method: :post %>
