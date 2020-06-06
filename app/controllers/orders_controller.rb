@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     @order.listing = Listing.find(params[:listing_id])
     @order.order_price_pq = @order.listing.listing_price_pq
     @order.quantity_ordered = 1 # create a simple form for quantity
-    @order.payment = @order,user.payment
     if @order.save
       # flash message "added to cart"
     else
