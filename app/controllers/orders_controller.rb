@@ -4,18 +4,22 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.user = current_user
-    @listing = Listing.find(params[:listing_id])
-    @order.listing = @listing
-    @order.order_price_pq = @order.listing.listing_price_pq
-
-    # create a simple form for quantity
-    @order.quantity_ordered = 3
-    @order.save
-    # if @order.quantity_ordered > @order.listing.quantity_available
-
-    # end
+    listing = Listing.find(params[:listing_id])
+    @order = Order.new(
+      user: current_user,
+      listing: listing,
+      order_price_pq: listing.listing_price_pq
+      # quantity_ordered: params[:quantity_ordered]
+      )
+    # temporarily create a simple form for quantity
+    @order.quantity_ordered = 7
+    if @order.quantity_ordered > @order.listing.quantity_available
+      redirect_to listing_path(listing), alert: "Only #{@order.listing.quantity_available} of #{@order.listing.name} is available. Please change the quantity of your order."
+    else
+      if @order.save
+        redirect_to orders_path, notice: "test"
+      end
+    end
   end
 
   def update
