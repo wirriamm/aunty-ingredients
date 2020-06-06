@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_145556) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "payment_id", null: false
+    t.bigint "payment_id"
     t.integer "quantity_ordered"
     t.boolean "completed", default: false
     t.float "order_price_pq"
