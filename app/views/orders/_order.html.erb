@@ -1,16 +1,19 @@
 <div class="container">
   <div class="row justify-content-between">
-    <div class="col">
+    <div class="col-4">
       <%= link_to listing_path(order.listing) do  %>
         <%= "#{order.listing.name.capitalize}"%>
       <% end %>
       (<%= order.listing.description %>)
     </div>
+    <div class="col-2">
+      $<%= order.listing.listing_price_pq * order.quantity_ordered %>
+    </div>
     <%= form_for(order) do |f| %>
-      <div class="col">
+      <div class="col-4">
         <%= f.number_field :quantity_ordered %>
       </div>
-      <div class="col">
+      <div class="col-2">
           <%= f.submit "Update cart" %>
       </div>
     <% end %>

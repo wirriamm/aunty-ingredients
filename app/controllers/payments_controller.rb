@@ -43,16 +43,6 @@ class PaymentsController < ApplicationController
       params.require(:payment).permit(:user, :total_price, :status)
     end
 
-    def total_price
-      sum = 0
-      @orders = Order.where(user: current_user && @payment == null)
-      @orders.each do |order|
-        order_price = order.quantity_ordered * order.order_price_pq
-        sum += order_price
-      end
-      sum
-    end
-
     def validate_payment_success
       true
     end

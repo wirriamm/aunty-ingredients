@@ -1,19 +1,12 @@
 <h1>My Cart</h1>
 <div>
-<!--   <%= simple_form_for(@payment) do |f| %>
-    <ul>
-<%= f.input_field :total_price %>
-     <% @orders.each do |order| %>
-        <li>
-          <%= order %>
-        </li>
-      <% end %>
-    </ul>
-
-
+  <%= render @orders  %>
+</div>
+<div>
+  <%= simple_form_for(@payment) do |f| %>
+    <%= f.input :total_price %>
     <%= f.submit 'Checkout and pay' %>
-  <% end %> -->
-    <%= render @orders  %>
+  <% end %>
 </div>
 
 <!--
