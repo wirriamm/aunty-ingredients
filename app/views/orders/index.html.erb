@@ -3,4 +3,5 @@
   <% @orders.each do |order| %>
     <p> <%= "#{order.listing.name} (#{order.listing.description})"%> </p>
   <% end %>
+  <%= link_to "Checkout and pay", payments_path, method: :post  %>
 </div>
