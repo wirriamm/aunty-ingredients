@@ -10,7 +10,11 @@ class OrdersController < ApplicationController
     @order = Order.new(
       user: current_user,
       listing: listing,
+<<<<<<< HEAD
       order_price_pq: listing.listing_price_pq,
+=======
+      order_price_pq: listing.listing_price_pq
+>>>>>>> orders#index only show orders that belongs to user and also orders that have not been transacted
       quantity_ordered: params[:quantity_ordered]
       )
     if @order.quantity_ordered > @order.listing.quantity_available
