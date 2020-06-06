@@ -11,11 +11,11 @@ class OrdersController < ApplicationController
     @order.order_price_pq = @order.listing.listing_price_pq
 
     # create a simple form for quantity
-    @order.quantity_ordered = 6
+    @order.quantity_ordered = 3
+    @order.save
+    # if @order.quantity_ordered > @order.listing.quantity_available
 
-    if @order.quantity_ordered > @order.listing.quantity_available
-
-    end
+    # end
   end
 
   def update
