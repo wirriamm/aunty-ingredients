@@ -1,10 +1,12 @@
 <h1>All my orders</h1>
 <div>
-  <%= form_for(@payment) do |f| %>
+  <%= simple_form_for(@payment) do |f| %>
     <ul>
+      <%= f.input_field :total_price %>
       <% @orders.each do |order| %>
-        <li><%= f.label_field  %>
-        <%= f.hidden_field  %> <%= "#{order.listing.name}" %> </li>
+        <li>
+          <%= order %>
+        </li>
       <% end %>
     </ul>
 
