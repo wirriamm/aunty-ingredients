@@ -8,7 +8,7 @@
 Listing: <%= @listing.name %><br>
 Description: <%= @listing.description %><br>
 Quantity Available: <%= @listing.quantity_available %><br>
-Price per Quantity: $<%= @listing.listing_price_pq %><br>
+Price per Quantity: $<%= '%.2f'%@listing.listing_price_pq %><br>
 <br>
 Sold by:<%= @listing.user.email %>
 <br>
