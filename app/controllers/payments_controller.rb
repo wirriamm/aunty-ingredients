@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
 
 
   #button to pay => post request
-  def create
+    def create
     #create new payment instance
     # @payment = Payment.new
     @payment = Payment.new(payment_params)
@@ -44,7 +44,6 @@ class PaymentsController < ApplicationController
       render "orders/index"
     end
   end
-
   private
 
     def payment_params
@@ -57,4 +56,7 @@ class PaymentsController < ApplicationController
 
 end
 
-
+# <% @payments.orders.each do |order| %>
+#   <%= order.listing.name  %>
+#   <%= order.quantity_ordered %>
+# <% end %>
