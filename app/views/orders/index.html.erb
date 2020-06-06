@@ -1,6 +1,26 @@
 <h1>All my orders</h1>
 <div>
-  <% @orders.each do |order| %>
-    <p> <%= "#{order.listing.name} (#{order.listing.description})"%> </p>
+  <%= form_for(@payment) do |f| %>
+    <ul>
+      <% @orders.each do |order| %>
+        <li><%= f.label_field  %>
+        <%= f.hidden_field  %> <%= "#{order.listing.name}" %> </li>
+      <% end %>
+    </ul>
+
+    <%= f.submit 'Checkout and pay' %>
   <% end %>
 </div>
+
+<!--
+<form action="">
+  <label for="order_1">Celeries (2)</label>
+  <input type="hidden" name="orders[:order_id]" id="order_1">
+
+  <label for="order_1">Celeries (2)</label>
+  <input type="hidden" name="orders[:order_id]" id="order_1">
+
+  <label for="order_1">Celeries (2)</label>
+  <input type="hidden" name="orders[:order_id]" id="order_1">
+</form>
+ -->

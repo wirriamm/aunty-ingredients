@@ -2,7 +2,7 @@
   <% if listing.photo.attached? %>
     <%= cl_image_tag(listing.photo.key, height: 100, crop: :fill) %>
   <% else %>
-    <%= cl_image_tag('z9rl3up5o9vk0wwp2bdbuikln6jl', height: 100, crop: :fill) %>
+    <%= image_tag "https://source.unsplash.com/random", alt: "alttext" %>
   <% end %>
   <div class="card-trip-infos">
     <div>

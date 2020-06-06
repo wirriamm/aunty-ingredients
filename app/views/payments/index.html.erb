@@ -1,0 +1,7 @@
+<h1>All my completed payments</h1>
+<ul>
+<% @payments.each do |payment| %>
+  <li><%= payment.id %>
+  <%= link_to "More details", payment_path(payment)  %></li>
+<% end %>
+</ul>
