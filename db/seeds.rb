@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "cleaning db"
 # User.destroy_all
+Order.destroy_all
 Listing.destroy_all
 User.destroy_all
 
@@ -31,14 +32,16 @@ puts "seeding users"
 
 user1 = User.create! :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 user2 = User.create! :email => 'jane@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
-
 puts "users seeded"
 
-puts "creating listings"
-
+puts "seeding listings"
 listing1 = Listing.create! :name => 'flour', :description => 'a bag of self-raising flour', :quantity_available => 5, :listing_price_pq => 2.5, :user => user1
 listing2 = Listing.create! :name => 'rice', :description => 'a bag of rice', :quantity_available => 10, :listing_price_pq => 5.0, :user => user1
 listing3 = Listing.create! :name => 'apples', :description => '1kg of apples', :quantity_available => 1, :listing_price_pq => 0.8, :user => user2
 listing4 = Listing.create! :name => 'nutella', :description => 'a bottle', :quantity_available => 99, :listing_price_pq => 5.97, :user => user2
-
 puts "listings seeded"
+
+puts "seeding orders"
+order1 = Order.create! :listing => listing1, :user => user2, :quantity_ordered => 1
+order2 = Order.create! :listing => listing3, :user => user1, :quantity_ordered => 1
+puts "orders seeded"
