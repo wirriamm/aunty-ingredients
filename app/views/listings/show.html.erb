@@ -30,10 +30,10 @@
     <div class="col">
       <p style="text-align:right;">
       <% if current_user != @listing.user %>
-        <% if @in_basket %>
-          <%= link_to "Edit in Basket", orders_path, class: "btn btn-primary" %>
+        <% if @in_cart %>
+          <%= link_to "Edit in Cart", orders_path, class: "btn btn-primary" %>
         <% else %>
-          <%= link_to "Add to cart", listing_orders_path(@listing), method: :post, class: "btn btn-primary" %><br>
+          <%= link_to "Add to Cart", listing_orders_path(@listing), method: :post, class: "btn btn-primary" %><br>
         <% end %>
       <% end %>
       </p>

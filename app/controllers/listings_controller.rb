@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @order = Order.new
-    @in_basket = check_listing_in_basket?
+    @in_cart = check_listing_in_cart?
   end
 
   def new
@@ -64,7 +64,7 @@ class ListingsController < ApplicationController
     current_user == @listing.user
   end
 
-  def check_listing_in_basket?
+  def check_listing_in_cart?
     @listing = Listing.find(params[:id])
     @orders = Order.where(user: current_user, completed: false)
     @orders.each do |order|

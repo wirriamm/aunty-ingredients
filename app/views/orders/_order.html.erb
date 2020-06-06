@@ -1,14 +1,19 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-between">
     <div class="col">
-      <%= "#{order.listing.name} (#{order.listing.description})"%>
-    </div>
-    <div class="col">
-      <%= form_for(order) do |f| %>
-          <%= f.number_field :quantity_ordered %>
-          <%= f.submit "Update cart" %>
+      <%= link_to listing_path(order.listing) do  %>
+        <%= "#{order.listing.name.capitalize}"%>
       <% end %>
+      (<%= order.listing.description %>)
     </div>
+    <%= form_for(order) do |f| %>
+      <div class="col">
+        <%= f.number_field :quantity_ordered %>
+      </div>
+      <div class="col">
+          <%= f.submit "Update cart" %>
+      </div>
+    <% end %>
     <div class="col">
       <%= link_to "Delete", order_path(order), method: :delete, data: {confirm: "Are you sure?"} %>
      </div>
