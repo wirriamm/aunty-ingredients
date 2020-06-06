@@ -1,0 +1,16 @@
+<div class="card-trip">
+  <% if listing.photo.attached? %>
+    <%= cl_image_tag(listing.photo.key, height: 100, crop: :fill) %>
+  <% else %>
+    <%= cl_image_tag('z9rl3up5o9vk0wwp2bdbuikln6jl', height: 100, crop: :fill) %>
+  <% end %>
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= listing.name.capitalize %></h2>
+      <p><%= listing.description %></p>
+      <p><%= link_to 'Details', listing_path(listing) %></p>
+    </div>
+    <h2 class="card-trip-pricing">$<%= '%.2f'%listing.listing_price_pq %></h2>
+    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+  </div>
+</div>
