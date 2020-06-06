@@ -23,35 +23,47 @@ class OrdersController < ApplicationController
       quantity_ordered: params[:order][:quantity_ordered]
 >>>>>>> orders#index validates the quantity against available listing when basket is refreshed
       )
+<<<<<<< HEAD
     if @order.quantity_ordered > @order.listing.quantity_available
       redirect_to listing_path(listing), alert: "Only #{@order.listing.quantity_available} of #{@order.listing.name.capitalize} is available. Please change the quantity of your order."
     else
       if @order.save
         redirect_to orders_path, notice: "#{@order.listing.name.capitalize} added to cart"
+=======
+    if validate_quantity?(@order)
+      if @order.save
+        redirect_to orders_path, notice: "#{@order.quantity_ordered} #{@order.listing.name} added to your basket."
+      else
+        redirect_to orders_path, alert: "#{@order.quantity_ordered} #{@order.listing.name} NOT added to your basket."
+>>>>>>> refactored orders#create and orders#update
       end
+    else
+      redirect_to listing_path(listing), alert: "Only #{@order.listing.quantity_available} of #{@order.listing.name} is available. Please change the quantity of your order."
     end
   end
 
   def update
     @order = Order.find(params[:id])
     @order.quantity_ordered = params[:order][:quantity_ordered]
-    if @order.quantity_ordered > @order.listing.quantity_available
-      redirect_to orders_path, alert: "Only #{@order.listing.quantity_available} #{@order.listing.name} available. Please change the quantity of your order."
-    else
+    if validate_quantity?(@order)
       if @order.save
         redirect_to orders_path, notice: "#{@order.quantity_ordered} #{@order.listing.name} updated in your basket."
+      else
+        redirect_to orders_path, alert: "#{@order.quantity_ordered} #{@order.listing.name} NOT updated in your basket."
       end
+    else
+      redirect_to orders_path, alert: "Only #{@order.listing.quantity_available} #{@order.listing.name} available. Please change the quantity of your order."
     end
   end
 
   def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
+    Order.find(params[:id]).destroy
     redirect_to orders_path
   end
 
   private
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   def total_price
     sum = 0
@@ -63,6 +75,9 @@ class OrdersController < ApplicationController
     sum
 =======
   def validate_quantity(order)
+=======
+  def validate_quantity?(order)
+>>>>>>> refactored orders#create and orders#update
     order.quantity_ordered <= order.listing.quantity_available
 >>>>>>> orders#index validates the quantity against available listing when basket is refreshed
   end
