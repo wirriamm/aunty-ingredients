@@ -5,6 +5,7 @@ class PaymentsController < ApplicationController
 
   def show
     @payment = Payment.find(params[:id])
+    @orders = Order.where(payment: @payment)
   end
 
 
@@ -24,14 +25,18 @@ class PaymentsController < ApplicationController
 
     #validate basket can be processed
     if @payment.save
-      @payment.status = "processing"
+      @payment.status = "Processing" #take status from payment gateway
+      @payment.save
       #results in "failed" or "success"
 
       #need to link payment to orders (but cannot get order object)
-      # @orders.each do |order|
-      #   order.payment = @payment
-      #   order.completed = true
-      # end
+      @orders = Order.where(user: current_user, completed: false)
+      @orders.each do |order|
+        order.payment = @payment
+        order.completed = true
+        order.save
+      end
+
 
       redirect_to payment_path(@payment)
     else
