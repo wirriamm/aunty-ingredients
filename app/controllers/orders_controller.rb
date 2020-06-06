@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.all
+    @orders = Order.where(user: current_user)
     @payment = Payment.new
   end
 
@@ -10,10 +10,8 @@ class OrdersController < ApplicationController
       user: current_user,
       listing: listing,
       order_price_pq: listing.listing_price_pq
-      # quantity_ordered: params[:quantity_ordered]
+      quantity_ordered: params[:quantity_ordered]
       )
-    # temporarily create a simple form for quantity
-    @order.quantity_ordered = 1
     if @order.quantity_ordered > @order.listing.quantity_available
       redirect_to listing_path(listing), alert: "Only #{@order.listing.quantity_available} of #{@order.listing.name} is available. Please change the quantity of your order."
     else
