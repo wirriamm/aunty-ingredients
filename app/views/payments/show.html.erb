@@ -1,3 +1,6 @@
-show.html.erb
-PAYMENTS show
-<%= @payment.id %>
+
+<%= @payment.id %><br>
+<% @payments.orders.each do |order| %>
+  <%= order.listing.name  %>
+  <%= order.quantity_ordered %>
+<% end %>
