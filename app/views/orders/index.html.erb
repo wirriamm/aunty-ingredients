@@ -10,6 +10,8 @@
     </div>
     <div class="col text-right">
       <%= simple_form_for(@payment) do |f| %>
+        <%= f.input :total_price, :as => :hidden, :input_html => { :value => @total_price } %>
+        <%= f.input :status, :as => :hidden, :input_html => { :value => "incomplete" } %>
         <%= f.submit 'Checkout and pay', class: "btn btn-primary" %>
       <% end %>
     </div>

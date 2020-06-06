@@ -11,11 +11,10 @@ class PaymentsController < ApplicationController
   #button to pay => post request
   def create
     #create new payment instance
-    @payment = Payment.new
-    # @payment = Payment.new(payment_params)
+    # @payment = Payment.new
+    @payment = Payment.new(payment_params)
     @payment.user = current_user
-    @payment.status = "incomplete"
-    @payment.total_price = total_price
+    # @payment.status = "incomplete"
     @payment.save #embed validation in payment model
 
     #assign payment instance to orders
@@ -27,13 +26,16 @@ class PaymentsController < ApplicationController
     if @payment.save
       @payment.status = "processing"
       #results in "failed" or "success"
-      @orders.each do |order|
-        order.payment = @payment
-        order.completed = true
-      end
+
+      #need to link payment to orders (but cannot get order object)
+      # @orders.each do |order|
+      #   order.payment = @payment
+      #   order.completed = true
+      # end
+
       redirect_to payment_path(@payment)
     else
-      render "orders"
+      render "orders/index"
     end
   end
 
@@ -50,3 +52,7 @@ class PaymentsController < ApplicationController
 end
 
 
+# <% @payments.orders.each do |order| %>
+#   <%= order.listing.name  %>
+#   <%= order.quantity_ordered %>
+# <% end %>

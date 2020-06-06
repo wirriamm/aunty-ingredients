@@ -1,6 +1,7 @@
 
-<%= @payment.id %><br>
-<% @payments.orders.each do |order| %>
-  <%= order.listing.name  %>
-  <%= order.quantity_ordered %>
-<% end %>
+Payment ID: <%= @payment.id %><br>
+Payment Total: <%= @payment.total_price %><br>
+Payment Status: <%= @payment.status %><br>
+
+<%= link_to "Back", payments_path  %>
+
