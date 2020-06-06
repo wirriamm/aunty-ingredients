@@ -19,8 +19,13 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.quantity_ordered = params[:order][:quantity_ordered]
+    @order.save
+    redirect_to orders_path
   end
 
   def destroy
+
   end
 end
