@@ -1,0 +1,8 @@
+<div>
+  <%= "#{order.listing.name} (#{order.listing.description})"%>
+  <%= form_for(order) do |f| %>
+      <%= f.number_field :quantity_ordered %>
+      <%= f.submit "Update cart" %>
+  <% end %>
+  <br>
+</div>

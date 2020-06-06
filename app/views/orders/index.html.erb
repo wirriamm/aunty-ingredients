@@ -1,6 +1,5 @@
 <h1>All my orders</h1>
 <div>
-  <% @orders.each do |order| %>
-    <p> <%= "#{order.listing.name} (#{order.listing.description})"%> </p>
-  <% end %>
+  <%= render @orders  %>
+
 </div>
