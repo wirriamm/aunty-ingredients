@@ -2,11 +2,18 @@
 <div>
   <%= render @orders  %>
 </div>
-<div>
-  <%= simple_form_for(@payment) do |f| %>
-    <%= f.input :total_price %>
-    <%= f.submit 'Checkout and pay' %>
-  <% end %>
+<br>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col">
+      <h3><strong>Total Price: <%= @total_price %></strong></h3>
+    </div>
+    <div class="col text-right">
+      <%= simple_form_for(@payment) do |f| %>
+        <%= f.submit 'Checkout and pay', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <!--
