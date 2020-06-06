@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where(user: current_user)
+    @orders = Order.where(user: current_user, completed: false)
     @payment = Payment.new
+    @total_price = total_price
   end
 
   def create
@@ -9,7 +10,7 @@ class OrdersController < ApplicationController
     @order = Order.new(
       user: current_user,
       listing: listing,
-      order_price_pq: listing.listing_price_pq
+      order_price_pq: listing.listing_price_pq,
       quantity_ordered: params[:quantity_ordered]
       )
     if @order.quantity_ordered > @order.listing.quantity_available
@@ -33,4 +34,15 @@ class OrdersController < ApplicationController
     @order.destroy
     redirect_to orders_path
   end
+
+  private
+    def total_price
+      sum = 0
+      @orders = Order.where(user: current_user, completed: false)
+      @orders.each do |order|
+        order_price = order.quantity_ordered * order.listing.listing_price_pq
+        sum += order_price
+      end
+      sum
+    end
 end

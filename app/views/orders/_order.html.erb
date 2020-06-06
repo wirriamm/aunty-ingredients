@@ -6,6 +6,9 @@
       <% end %>
       (<%= order.listing.description %>)
     </div>
+    <div class="col-2">
+      $<%= order.listing.listing_price_pq * order.quantity_ordered %>
+    </div>
     <%= form_for(order) do |f| %>
       <div class="col-4">
         <%= f.number_field :quantity_ordered %>

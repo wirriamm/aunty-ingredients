@@ -1,6 +1,16 @@
+<strong>Payment ID: <%= @payment.id %></strong><br>
+Payment Total: $<%= @payment.total_price %><br>
+Payment Status: <%= @payment.status %><br>
+<br>
 
-<%= @payment.id %><br>
-<% @payments.orders.each do |order| %>
-  <%= order.listing.name  %>
-  <%= order.quantity_ordered %>
+Items Ordered:<br>
+<ul>
+<% @orders.each do |order| %>
+  <li>
+    <%= order.listing.name.capitalize %>
+    (Qty: <%= order.quantity_ordered %>)
+  </li>
 <% end %>
+</ul>
+
+<%= link_to "Back", payments_path  %>
