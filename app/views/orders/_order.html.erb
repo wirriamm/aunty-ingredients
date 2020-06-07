@@ -1,0 +1,9 @@
+<div>
+  <%= "#{order.listing.name} (#{order.listing.description})"%>
+  <%= form_for(order) do |f| %>
+      <%= f.number_field :quantity_ordered %>
+      <%= f.submit "Update cart" %>
+  <% end %>
+  <%= link_to "Delete", order_path(order), method: :delete, data: {confirm: "Are you sure?"} %>
+  <br>
+</div>
