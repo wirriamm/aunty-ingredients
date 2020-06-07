@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :listings do
     resources :orders, only: [:create]
   end
+  resources :payments, only: [:index, :show, :create]
 end
