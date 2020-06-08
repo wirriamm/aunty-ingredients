@@ -1,7 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://www.pinclipart.com/picdir/big/84-847632_wheat-vector-black-and-white-wheat-stalk-clipart.png" %>
-    <% end %>
+<!--     <i class="fas fa-cookie-bite"></i>
+ -->    <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -11,14 +12,18 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", root_path, class: "nav-link" %>
+        <li class="nav-item p-1">
+          <%= link_to root_path, class: "nav-link" do %>
+            <i class="fas fa-home"></i>
+          <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Basket", orders_path, class: "nav-link" %>
+        <li class="nav-item p-1">
+          <%= link_to orders_path, class: "nav-link" do %>
+            <i class="fas fa-shopping-cart"></i>
+          <% end %>
         </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+        <li class="nav-item dropdown p-1">
+          <%= image_tag "http://cdn.onlinewebfonts.com/svg/img_411076.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Listings", listings_path, class: "dropdown-item" %>
             <%= link_to "My Payments", payments_path, class: "dropdown-item" %>

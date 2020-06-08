@@ -1,26 +1,21 @@
-<h1>My Basket</h1>
-  <%= simple_form_for(@payment) do |f| %>
-    <ul>
-<!--       <%= f.input_field :total_price %>
- -->      <% @orders.each do |order| %>
-        <li>
-          <%= order %>
-        </li>
+<h1>My Cart</h1>
+<div>
+  <%= render @orders  %>
+</div>
+<br>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col">
+      <h3><strong>Total Price: <%= @total_price %></strong></h3>
+    </div>
+    <% if @total_price != 0 %>
+      <div class="col text-right">
+      <%= simple_form_for(@payment) do |f| %>
+        <%= f.input :total_price, :as => :hidden, :input_html => { :value => @total_price } %>
+        <%= f.input :status, :as => :hidden, :input_html => { :value => "incomplete" } %>
+        <%= f.submit 'Checkout and pay', class: "btn btn-primary" %>
       <% end %>
-    </ul>
-
-    <%= f.submit 'Checkout and pay' %>
-  <% end %>
-
-<!--
-<form action="">
-  <label for="order_1">Celeries (2)</label>
-  <input type="hidden" name="orders[:order_id]" id="order_1">
-
-  <label for="order_1">Celeries (2)</label>
-  <input type="hidden" name="orders[:order_id]" id="order_1">
-
-  <label for="order_1">Celeries (2)</label>
-  <input type="hidden" name="orders[:order_id]" id="order_1">
-</form>
- -->
+      </div>
+    <% end %>
+  </div>
+</div>

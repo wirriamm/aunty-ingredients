@@ -1,9 +1,25 @@
-<div>
-  <%= "#{order.listing.name} (#{order.listing.description})"%>
-  <%= form_for(order) do |f| %>
-      <%= f.number_field :quantity_ordered %>
-      <%= f.submit "Update cart" %>
-  <% end %>
-  <%= link_to "Delete", order_path(order), method: :delete, data: {confirm: "Are you sure?"} %>
-  <br>
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <%= link_to listing_path(order.listing) do  %>
+        <%= "#{order.listing.name.capitalize}"%>
+      <% end %>
+      (<%= order.listing.description %>)
+    </div>
+    <%= form_for(order) do |f| %>
+      <div class="col-4">
+        <%= f.number_field :quantity_ordered %>
+      </div>
+      <div class="col-2">
+          <%= f.submit "Update cart" %>
+      </div>
+    <% end %>
+    <div class="col-2">
+      $<%= order.listing.listing_price_pq * order.quantity_ordered %>
+    </div>
+    <div class="col">
+      <%= link_to "Delete", order_path(order), method: :delete, data: {confirm: "Are you sure?"} %>
+     </div>
+    <br>
+  </div>
 </div>
