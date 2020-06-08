@@ -39,6 +39,6 @@
 </div>
 
 <%= form_for ([@listing, @order]) do |f| %>
-  <%= f.number_field :quantity_ordered %>
+  <%= f.number_field :quantity_ordered, {min: 0, max: @listing.quantity_available}%>
   <%= f.submit "Add to cart" %>
 <% end %>
