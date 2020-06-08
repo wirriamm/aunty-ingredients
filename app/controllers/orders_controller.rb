@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
       order_price = order.quantity_ordered * order.listing.listing_price_pq
       sum += order_price
     end
-    return sum
+    return sum.round(2)
   end
 
   def validate_quantity?(order)
