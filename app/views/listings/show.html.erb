@@ -15,11 +15,8 @@
     <%= render 'shared/card', listing: @listing %>
   </div>
 
-<!-- Listing: <%= @listing.name %><br> -->
 <p style="margin-left: 16px">
-  Description: <%= @listing.description %><br>
   Quantity Available: <%= @listing.quantity_available %><br>
-  Price per Quantity: $<%= @listing.listing_price_pq %><br>
 </p>
 
 <div class="container">
@@ -40,3 +37,8 @@
     </div>
   </div>
 </div>
+
+<%= form_for ([@listing, @order]) do |f| %>
+  <%= f.number_field :quantity_ordered %>
+  <%= f.submit "Add to cart" %>
+<% end %>
