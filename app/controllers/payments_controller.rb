@@ -55,8 +55,3 @@ class PaymentsController < ApplicationController
     end
 
 end
-
-# <% @payments.orders.each do |order| %>
-#   <%= order.listing.name  %>
-#   <%= order.quantity_ordered %>
-# <% end %>
