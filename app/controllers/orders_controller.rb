@@ -56,13 +56,8 @@ class OrdersController < ApplicationController
   private
 
   def total_price
-    sum = 0
     @orders = Order.where(user: current_user, completed: false)
-    @orders.each do |order|
-      order_price = order.quantity_ordered * order.listing.listing_price_pq
-      sum += order_price
-    end
-    return sum
+    @orders.sum { |order| order.quantity_ordered * order.listing.listing_price_pq }.round(2)
   end
 
   def validate_quantity?(order)
