@@ -8,14 +8,15 @@
     </div>
     <%= form_for(order) do |f| %>
       <div class="col-4">
-        <%= f.number_field :quantity_ordered %>
+        <%= f.number_field :quantity_ordered, {min: 0, max: order.listing.quantity_available} %>
       </div>
       <div class="col-2">
           <%= f.submit "Update cart" %>
       </div>
     <% end %>
     <div class="col-2">
-      $<%= order.listing.listing_price_pq * order.quantity_ordered %>
+      <% price = order.listing.listing_price_pq * order.quantity_ordered %>
+      <%= number_to_currency(price) %>
     </div>
     <div class="col">
       <%= link_to "Delete", order_path(order), method: :delete, data: {confirm: "Are you sure?"} %>
