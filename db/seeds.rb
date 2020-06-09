@@ -34,7 +34,7 @@ jack.save!
 puts "jack seeded"
 
 puts "Seeding listings"
-flour = Listing.create
+flour = Listing.create!
 
 
 flour = Listing.create! :name => 'flour', :description => 'a bag of self-raising flour', :quantity_available => 5, :listing_price_pq => 2.5, :user => john
