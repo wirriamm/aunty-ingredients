@@ -11,34 +11,31 @@
   </div>
 </div>
 
-  <div class="p-3">
-    <%= render 'shared/card', listing: @listing %>
-  </div>
-
-<p style="margin-left: 16px">
-  Quantity Available: <%= @listing.quantity_available %><br>
-</p>
-
-<div class="container">
-  <div class="row justify-content-between">
-    <div class="col">
-      Sold by: <%= @listing.user.email %>
-    </div>
-    <div class="col">
-      <p style="text-align:right;">
-      <% if current_user != @listing.user %>
-        <% if @in_cart %>
-          <%= link_to "Edit in Cart", orders_path, class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "Add to Cart", listing_orders_path(@listing), method: :post, class: "btn btn-primary" %><br>
-        <% end %>
-      <% end %>
-      </p>
-    </div>
-  </div>
+<div class="p-3">
+  <% if @listing.photo.attached? %>
+    <%= cl_image_tag(listing.photo.key, height: 200, crop: :fill) %>
+  <% else %>
+    <%= image_tag "https://source.unsplash.com/featured/?#{@listing.name}", height: 200, alt: "alttext" %>
+  <% end %>
 </div>
 
-<%= form_for ([@listing, @order]) do |f| %>
-  <%= f.number_field :quantity_ordered, {min: 1, max: @listing.quantity_available}%>
-  <%= f.submit "Add to cart" %>
-<% end %>
+<p style="margin-left: 16px">
+  <strong>Item:</strong> <%= @listing.name.capitalize %><br>
+  <strong>Description:</strong> <%= @listing.description %><br>
+  <strong>Quantity Available:</strong> <%= @listing.quantity_available %><br>
+  <strong>Price per quantity:</strong> $<%= @listing.listing_price_pq %><br>
+</p>
+
+<p style="margin-left: 16px">
+  <% if current_user != @listing.user %>
+    <% if @in_cart %>
+      <%= link_to "Edit in Cart", orders_path, class: "btn btn-primary" %>
+    <% else %>
+      <%= form_for ([@listing, @order]) do |f| %>
+        Quantity I would like to reserve: <%= f.number_field :quantity_ordered, {min: 1, max: @listing.quantity_available}%>
+        <%= f.submit "Add to cart", class: "btn btn-primary", style: "text-align-right" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</p>
+
