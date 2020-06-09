@@ -8,11 +8,32 @@
     </div>
   </div>
 
+  <div>
+    <% @listings.each do |listing| %>
+    <%= render 'shared/card', listing: listing %>
+    <% end %>
+  </div>
+
+  <table class='my-orders'>
+    <tr>
+      <th>Quantity</th>
+      <th>Item</th>
+      <th>Total Price</th>
+      <th>Buyer</th>
+      <th>Status</th>
+      <th>Button</th>
+    </tr>
+    <% @my_orders.each do |order| %>
+      <tr>
+        <td><%= order.quantity_ordered %></td>
+        <td><%= order.listing.name %></td>
+        <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.payment.status %></td>
+        <td>Button</td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
-<% @listings.each do |listing| %>
-  <div class="p-3">
-    <%= render 'shared/card', listing: listing %>
-  </div>
-<% end %>
 
