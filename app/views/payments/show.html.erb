@@ -1,14 +1,16 @@
-<strong>Payment ID: <%= @payment.id %></strong><br>
-Payment Total: $<%= @payment.total_price %><br>
-Payment Status: <%= @payment.status %><br>
+<h3><strong>Reservation ID: #<%= @payment.id %></strong></h3><br>
+Reservation Total: $<%= @payment.total_price %><br>
+Reservation Status: <%= @payment.status %><br>
 <br>
 
-Items Ordered:<br>
+<strong>Items Reserved:</strong><br>
 <ul>
 <% @orders.each do |order| %>
   <li>
     <%= order.listing.name.capitalize %>
-    (Qty: <%= order.quantity_ordered %>)
+    (Quantity: <%= order.quantity_ordered %>):
+    $<%= order.quantity_ordered * order.order_price_pq  %> |
+    From: <%= order.listing.user.email %>
   </li>
 <% end %>
 </ul>
