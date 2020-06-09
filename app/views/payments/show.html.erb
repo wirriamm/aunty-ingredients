@@ -1,5 +1,5 @@
 <h3><strong>Reservation ID: #<%= @payment.id %></strong></h3><br>
-Reservation Total: $<%= @payment.total_price %><br>
+Reservation Total: $<%= number_to_currency(@payment.total_price) %><br>
 Reservation Status: <%= @payment.status %><br>
 <br>
 
@@ -9,7 +9,7 @@ Reservation Status: <%= @payment.status %><br>
   <li>
     <%= order.listing.name.capitalize %>
     (Quantity: <%= order.quantity_ordered %>):
-    $<%= order.quantity_ordered * order.order_price_pq  %> |
+    $<%= number_to_currency(order.quantity_ordered * order.order_price_pq)  %> |
     From: <%= order.listing.user.email %>
   </li>
 <% end %>

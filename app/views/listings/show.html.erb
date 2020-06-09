@@ -23,7 +23,7 @@
   <strong>Item:</strong> <%= @listing.name.capitalize %><br>
   <strong>Description:</strong> <%= @listing.description %><br>
   <strong>Quantity Available:</strong> <%= @listing.quantity_available %><br>
-  <strong>Price per quantity:</strong> $<%= @listing.listing_price_pq %><br>
+  <strong>Price per quantity:</strong> $<%= number_to_currency(@listing.listing_price_pq) %><br>
 </p>
 
 <p style="margin-left: 16px">
