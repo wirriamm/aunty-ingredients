@@ -5,43 +5,45 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-puts "cleaning db"
-# User.destroy_all
+puts "Cleaning DB"
+User.destroy_all
 Order.destroy_all
 Listing.destroy_all
 User.destroy_all
 
-puts "seeding users"
-# user1 = {
-#   email: "user1#@test.com",
-#   encrypted_password: "password1"
-# }
-# user2 = {
-#   email: "user2@test.com",
-#   encrypted_password: "password2"
-# }
+puts "Seeding 3 users"
+john = User.new(email: 'john@gmail.com',
+                password: 'topsecret',
+                password_confirmation: 'topsecret',
+                address: '30 Bedok North Rd, Singapore 469676')
+john.save!
+puts "jane seeded"
 
-# [ user2, user2 ].each do |user|
-#   User.create!(user)
-# end
+jane = User.new(email: 'jane@gmail.com',
+                password: 'topsecret',
+                password_confirmation: 'topsecret',
+                address: '539 Bedok North Street 3, #01-643, Singapore 460539')
+jane.save!
+puts "jane seeded"
 
-# user = User.new
-# user.email = 'test@example.com'
-# user.encrypted_password = '#$taawktljasktlw4aaglj'
-# user.save!
+jack = User.new(email: 'jack@gmail.com',
+                password: 'topsecret',
+                password_confirmation: 'topsecret',
+                address: 'Bedok North Ave 2, #01-25 Block 416, Singapore 460416')
+jack.save!
+puts "jack seeded"
 
-user1 = User.create! :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
-user2 = User.create! :email => 'jane@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
-puts "users seeded"
+puts "Seeding listings"
+flour = Listing.create
 
-puts "seeding listings"
-listing1 = Listing.create! :name => 'flour', :description => 'a bag of self-raising flour', :quantity_available => 5, :listing_price_pq => 2.5, :user => user1
-listing2 = Listing.create! :name => 'rice', :description => 'a bag of rice', :quantity_available => 10, :listing_price_pq => 5.0, :user => user1
-listing3 = Listing.create! :name => 'apples', :description => '1kg of apples', :quantity_available => 1, :listing_price_pq => 0.8, :user => user2
-listing4 = Listing.create! :name => 'nutella', :description => 'a bottle', :quantity_available => 99, :listing_price_pq => 5.97, :user => user2
+
+flour = Listing.create! :name => 'flour', :description => 'a bag of self-raising flour', :quantity_available => 5, :listing_price_pq => 2.5, :user => john
+listing2 = Listing.create! :name => 'rice', :description => 'a bag of rice', :quantity_available => 10, :listing_price_pq => 5.0, :user => john
+listing3 = Listing.create! :name => 'apples', :description => '1kg of apples', :quantity_available => 1, :listing_price_pq => 0.8, :user => jane
+listing4 = Listing.create! :name => 'nutella', :description => 'a bottle', :quantity_available => 99, :listing_price_pq => 5.97, :user => jane
 puts "listings seeded"
 
-puts "seeding orders"
+puts "Seeding orders"
 order1 = Order.create! :listing => listing1, :user => user2, :quantity_ordered => 1
 order2 = Order.create! :listing => listing3, :user => user1, :quantity_ordered => 1
 puts "orders seeded"
