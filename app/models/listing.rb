@@ -1,6 +1,6 @@
 class Listing < ApplicationRecord
   belongs_to :user
-  has_many :orders
+  has_many :orders # cannot use dependent :destroy, as sold orders cannot be unsold even though the current listing is deleted
   has_one_attached :photo
 
   validates :name, presence: true

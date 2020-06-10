@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # relationship
-  has_many :payments
-  has_many :orders
+  has_many :payments, dependent: :destroy
+  has_many :orders # Orders cannot be destroyed as seller needs the order info in their payments records
   has_many :listings, dependent: :destroy
 
   # validation
