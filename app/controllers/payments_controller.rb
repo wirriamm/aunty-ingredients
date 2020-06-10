@@ -26,7 +26,7 @@ class PaymentsController < ApplicationController
 
     #validate basket can be processed
     if @payment.save
-      @payment.status = "Processing" #take status from payment gateway
+      @payment.status = "Confirmed" #take status from payment gateway
       @payment.save
       #results in "failed" or "success"
 
