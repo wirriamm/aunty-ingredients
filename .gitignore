@@ -41,6 +41,3 @@ yarn-debug.log*
 *.swp
 .DS_Store
 .env*
-
-# Ignore image for seeds
-db/seed-images
