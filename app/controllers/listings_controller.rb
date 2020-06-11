@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.where(user: current_user)
+    @my_orders = retrieve_orders_from_listing
   end
 
   def show
@@ -73,6 +74,14 @@ class ListingsController < ApplicationController
       end
     end
     return false
+  end
+
+  def retrieve_orders_from_listing
+    orders = []
+    @listings.each do |listing|
+      orders += Order.where(listing: listing, completed: true)
+    end
+    return orders
   end
 end
 
