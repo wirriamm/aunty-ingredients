@@ -9,9 +9,9 @@
 require 'open-uri'
 
 puts "Cleaning DB"
-Payment.destroy_all
-Order.destroy_all
-Listing.destroy_all
+# Payment.destroy_all
+# Order.destroy_all
+# Listing.destroy_all
 User.destroy_all
 
 puts "Seeding 4 users"
