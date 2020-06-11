@@ -1,0 +1,19 @@
+<div class="card border-light" style="width: 12rem;">
+  <% if listing.photo.attached? %>
+    <%= cl_image_tag(listing.photo.key, crop: :fill, class: 'card-img-top') %>
+  <% else %>
+    <%= image_tag "https://source.unsplash.com/featured/?#{listing.name}", alt: "alttext", class: 'card-img-top' %>
+  <% end %>
+
+  <div class="card-body py-1 px-0">
+    <p class="card-text font-weight-bold my-0">
+      <%= link_to listing_path(listing) do %>
+      <h2><%= listing.name.capitalize %></h2>
+    <% end %></p>
+    <p class="card-text my-0"><%= number_to_currency(listing.listing_price_pq) %></p>
+    <!-- TODO: set maximum words to be displayed -->
+    <p class="card-text my-0"><%= listing.description.capitalize %></p>
+    <!-- TODO: show listed xx ago -->
+    <p class="card-text mt-1">Listed xx ago.</p>
+  </div>
+</div>

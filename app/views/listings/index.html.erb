@@ -8,9 +8,7 @@
 
   <div class="mt-3 mb-5">
     <% if @listings.any? %>
-      <% @listings.each do |listing| %>
-      <%= render 'shared/card', listing: listing %>
-      <% end %>
+     <%= render partial: 'shared/listing', collection: @listings %>
     <% else %>
       <p>You don't have any listing.</p>
     <% end %>
