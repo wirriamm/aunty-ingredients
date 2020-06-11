@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://www.pinclipart.com/picdir/big/84-847632_wheat-vector-black-and-white-wheat-stalk-clipart.png" %>
 <!--     <i class="fas fa-cookie-bite"></i>
@@ -8,6 +8,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <!-- TODO: link search box to search function -->
+  <form class="form-inline my-2 my-lg-0 flex-grow-1 mx-5">
+    <input class="form-control mr-sm-2 flex-grow-1 " type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+  </form>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
@@ -31,6 +36,9 @@
           </div>
         </li>
       <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+        </li>
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
