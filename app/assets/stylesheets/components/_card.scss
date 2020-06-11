@@ -2,16 +2,17 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-top: 20px;
 }
 
-.card-trip .grid {
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
   grid-gap: 1rem;
 }
 
-.card-trip .card-img-top {
+.card-trip .card-img-top, .grid .card-img-top {
   height: 200px;
   width: 100%;
   object-fit: cover;
@@ -44,4 +45,8 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+#carouselExampleInterval img {
+  height: 200px;
 }
