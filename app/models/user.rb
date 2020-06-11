@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   # relationship
   has_many :payments, dependent: :destroy
-  has_many :orders # Orders cannot be destroyed as seller needs the order info in their payments records
+  has_many :orders, dependent: :destroy
+  # Orders cannot be destroyed as seller needs the order info in their payments records
   has_many :listings, dependent: :destroy
+  # Note: All dependent: :destroy is for seeding purpose
 
   # validation
   validates :email, uniqueness: true
