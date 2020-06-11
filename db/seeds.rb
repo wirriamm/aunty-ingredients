@@ -46,7 +46,8 @@ puts "jill seeded"
 ################################################################################
 
 puts
-puts "Seeding 11 listings"
+puts "Seeding 10 listings"
+
 flour = Listing.create!(
     name: 'Flour',
     description: 'A bag of self-raising flour',

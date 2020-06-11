@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   # relationship
   belongs_to :user
-  has_many :orders
+  has_many :orders, dependent: :destroy
 
   # validation
   validates :total_price, presence: true, numericality: true
