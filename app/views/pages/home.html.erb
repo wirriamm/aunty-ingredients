@@ -1,6 +1,15 @@
 <h1>Welcome to Aunty's Market</h1>
 <h3><em>Buy and sell your extra ingredients with ease!</em></h3>
 
+<%= form_tag root_path, method: :get, class: "form-inline" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Find a listing"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
+
 <% @listings.each do |listing| %>
   <div class="p-3">
     <%= render 'shared/card', listing: listing %>

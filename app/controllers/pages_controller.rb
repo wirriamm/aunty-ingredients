@@ -2,8 +2,11 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    if current_user
-      @listings = Listing.where.not(user_id: current_user.id)
+    # if current_user
+    #   @listings = Listing.where.not(user_id: current_user.id)
+    if params[:query].present?
+      @listings = Listing.global_search(params[:query])
+      # @listings = search_results.searchable
     else
       @listings = Listing.all
     end
