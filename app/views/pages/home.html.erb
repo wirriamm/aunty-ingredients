@@ -1,17 +1,21 @@
-<h1>Welcome to Aunty's Market</h1>
-<h3><em>Buy and sell your extra ingredients with ease!</em></h3>
+<div class='banner text-center'>
+  <h1><strong> Welcome to Aunty's Market</strong></h1>
+  <h3>Buy and sell your extra ingredients with ease!</h3>
+</div>
 
-<%= form_tag root_path, method: :get, class: "form-inline" do %>
-  <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Find a listing"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
-
-<% @listings.each do |listing| %>
-  <div class="p-3">
-    <%= render 'shared/card', listing: listing %>
+<div class="container card-trip p-3">
+  <h1>Listings near you</h1>
+  <div class="grid p-3">
+    <!-- TODO: filter by distance  -->
+    <!-- TODO: collapsible with a View More button  -->
+    <%= render partial: 'shared/listing', collection: @listings %>
   </div>
-<% end %>
+</div>
+
+<div class="container card-trip p-3">
+  <h1>New Listings</h1>
+  <div class="grid p-3">
+    <!-- TODO: collapsible with a View More button  -->
+    <%= render partial: 'shared/listing', collection: @listings %>
+  </div>
+</div>
