@@ -1,5 +1,5 @@
 <!-- TODO: make navbar responsive with scrolling -->
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top ">
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "https://www.pinclipart.com/picdir/big/84-847632_wheat-vector-black-and-white-wheat-stalk-clipart.png" %>
   <% end %>
@@ -18,7 +18,7 @@
     <!-- <div class="input-group-prepend">
       <span class="input-group-text my-2 my-sm-0" id="basic-addon1"><i class="fas fa-search"></i></span>
     </div> -->
-    <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0 flex-grow-1 mx-5" do %>
+    <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0 flex-grow-1 mx-1" do %>
       <%= text_field_tag :query,
       # params[:query],
       nil,
@@ -52,10 +52,10 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+        <li class="nav-item" style="width: 6rem;">
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link " %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" >
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
       <% end %>
