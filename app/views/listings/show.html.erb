@@ -1,45 +1,55 @@
-<div class="d-flex flex-row-reverse my-3">
-  <% if current_user == @listing.user %>
-  <div class="mx-1">
-    <%= link_to "Delete", listing_path(@listing), method: :delete, class: "btn btn-danger"%>
-  </div>
-  <div class="mx-1">
-    <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-primary" %>
-  </div>
-  <% end  %>
-</div>
+<div class="container">
+  <div class="card-trip mt-3 mb-5 p-3">
+    <div class="d-flex flex-row-reverse my-3">
+      <% if current_user == @listing.user %>
+      <div class="mx-1">
+        <%= link_to "Delete", listing_path(@listing), method: :delete, class: "btn btn-danger"%>
+      </div>
+      <div class="mx-1">
+        <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-primary" %>
+      </div>
+      <% end  %>
+    </div>
 
-<div class="p-3">
-  <% if @listing.photo.attached? %>
-    <%= cl_image_tag(@listing.photo.key, height: 200, crop: :fill) %>
-  <% else %>
-    <%= image_tag "https://source.unsplash.com/featured/?#{@listing.name}", height: 200, alt: "alttext" %>
-  <% end %>
-</div>
-
-<p style="margin-left: 16px">
-  <strong>Item:</strong> <%= @listing.name.capitalize %><br>
-  <strong>Description:</strong> <%= @listing.description %><br>
-  <strong>Quantity Available:</strong> <%= @listing.quantity_available %><br>
-  <strong>Price per quantity:</strong> $<%= number_to_currency(@listing.listing_price_pq) %><br>
-</p>
-
-<p style="margin-left: 16px">
-  <% if current_user != @listing.user %>
-    <% if @in_cart %>
-      <%= link_to "Edit in Cart", orders_path, class: "btn btn-primary" %>
-    <% else %>
-      <%= form_for ([@listing, @order]) do |f| %>
-        Quantity I would like to reserve: <%= f.number_field :quantity_ordered, {min: 1, max: @listing.quantity_available}%>
-        <%= f.submit "Add to cart", class: "btn btn-primary", style: "text-align-right" %>
+    <div class="p-3">
+      <% if @listing.photo.attached? %>
+        <%= cl_image_tag(@listing.photo.key, height: 200, crop: :fill) %>
+      <% else %>
+        <%= image_tag "https://source.unsplash.com/featured/?#{@listing.name}", height: 200, alt: "alttext" %>
       <% end %>
-    <% end %>
-  <% end %>
-</p>
+    </div>
 
-<% if current_user == @listing.user %>
-  <%= link_to "Back", listings_path  %>
-<% else %>
-  <%= link_to "Back", root_path %>
-<% end %>
+    <div style="margin-left: 16px">
+      <p >
+        <strong>Item:</strong> <%= @listing.name.capitalize %><br>
+        <strong>Description:</strong> <%= @listing.description %><br>
+        <strong>Quantity Available:</strong> <%= @listing.quantity_available %><br>
+        <strong>Price per quantity:</strong> <%= number_to_currency(@listing.listing_price_pq) %><br>
+      </p>
+
+      <p class="my-3">
+        <% if current_user != @listing.user %>
+          <% if @in_cart %>
+            <p> <%= "This item is already in your cart." %></p>
+            <%= link_to "Edit in Cart", orders_path, class: "btn btn-primary" %>
+          <% else %>
+            <%= form_for ([@listing, @order]) do |f| %>
+              <p><strong> Quantity I would like to reserve:</strong></p>
+              <%= f.number_field :quantity_ordered, {min: 1, max: @listing.quantity_available}%>
+              <%= f.submit "Add to cart", class: "btn btn-primary", style: "text-align-right" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </p>
+
+      <p class="my-3">
+        <% if current_user == @listing.user %>
+          <%= link_to "Back", listings_path  %>
+        <% else %>
+          <%= link_to "Back", root_path %>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
 
