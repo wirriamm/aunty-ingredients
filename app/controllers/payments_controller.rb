@@ -58,12 +58,16 @@ class PaymentsController < ApplicationController
   def build_alert(deleted_listings, insufficient_quantity)
     if deleted_listings.any?
       deleted = deleted_listings.map { |order| order.listing.name }
-      msg1 = "#{deleted.join(', ')} has been removed from the seller; "
+      msg1 = pluralize_sentence(deleted) + "been removed from the seller; "
     end
     if insufficient_quantity.any?
       insufficient = insufficient_quantity.map { |order| order.listing.name }
-      msg2 = "#{insufficient.join(', ')} have insufficient stock; "
+      msg2 = pluralize_sentence(insufficient) + "insufficient stock; "
     end
     "#{msg1}#{msg2}Please edit your cart before checking out again."
+  end
+
+  def pluralize_sentence(array)
+    plularized = array.length > 1 ? "#{array[0]} has " : "#{array.join(', ')} have "
   end
 end
