@@ -28,20 +28,22 @@
           <th scope="col">Total Price</th>
           <th scope="col">Buyer</th>
           <th scope="col">Status</th>
-          <th scope="col">Button</th>
+          <!-- TODO: Add a button for action -->
+          <!-- <th scope="col">Button</th> -->
         </tr>
       </thead>
       <% counter = 1 %>
       <% @my_orders.each do |order| %>
       <tr>
-        <th scope='row'><%= counter %></td>
-          <% counter += 1 %>
-          <td><%= order.listing.name %></td>
-          <td><%= order.quantity_ordered %></td>
-          <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
-          <td><%= order.user.email %></td>
-          <td><%= order.payment.status %></td>
-          <td>Button</td>
+        <th scope='row'><%= counter %></th>
+        <% counter += 1 %>
+        <td><%= order.listing.name %></td>
+        <td><%= order.quantity_ordered %></td>
+        <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.payment.status %></td>
+        <!-- TODO: Add a button for action -->
+        <!-- <td>Button</td> -->
         </tr>
         <% end %>
       </table>
