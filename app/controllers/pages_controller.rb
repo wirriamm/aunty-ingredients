@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
+  # after_action :redirect_search, only: :home
 
   def home
     # if current_user
@@ -10,5 +11,11 @@ class PagesController < ApplicationController
     else
       @listings = Listing.all
     end
+  end
+
+  private
+
+  def redirect_search
+    redirect_to root_path(@listings, anchor: "search_anchor")
   end
 end
