@@ -9,21 +9,24 @@
   </button>
 
   <!-- TODO: link search box to search function -->
-<!--   <form class="form-inline my-2 my-lg-0 flex-grow-1 mx-5">
+ <!--  <form class="form-inline my-2 my-lg-0 flex-grow-1 mx-5">
     <input class="form-control mr-sm-2 flex-grow-1 " type="search" placeholder="Search for ingredients" aria-label="Search">
     <button class="btn btn btn-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
   </form> -->
 
-  <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0 flex-grow-1 mx-5" do %>
-    <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-    placeholder: "Search for ingredients"
-  %>
-    <%= submit_tag, class: "btn" do %>
-      <i class="fas fa-search"></i>
+  <div class="input-group mb-3">
+    <!-- <div class="input-group-prepend">
+      <span class="input-group-text my-2 my-sm-0" id="basic-addon1"><i class="fas fa-search"></i></span>
+    </div> -->
+    <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0 flex-grow-1 mx-5" do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control" "mr-sm-2 flex-grow-1",
+      placeholder: "Search for ingredients"
+    %>
     <% end %>
-  <% end %>
+  </div>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
