@@ -68,6 +68,6 @@ class PaymentsController < ApplicationController
   end
 
   def pluralize_sentence(array)
-    plularized = array.length > 1 ? "#{array[0]} has " : "#{array.join(', ')} have "
+    array.length > 1 ? "#{array.join(', ')} have " : "#{array[0]} has "
   end
 end
