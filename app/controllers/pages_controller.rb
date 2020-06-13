@@ -9,7 +9,7 @@ class PagesController < ApplicationController
       @listings = Listing.global_search(params[:query])
       # @listings = search_results.searchable
     else
-      @listings = Listing.all
+      @listings = Listing.all.order("updated_at").reverse_order
     end
   end
 
