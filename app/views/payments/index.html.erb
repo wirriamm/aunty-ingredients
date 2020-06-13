@@ -1,10 +1,32 @@
-<h1>My Reservations</h1>
-<ul>
-<% @payments.each do |payment| %>
-  <li>
-    <%= link_to payment_path(payment) do %>
-      Reservation ID: #<%= payment.id %>
+<div class="container">
+  <div class="card-trip mt-3 mb-5 p-3">
+    <h1>My Reservations</h1>
+    <table class='table'>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Reservation ID</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <% counter = 1 %>
+    <% @payments.each do |payment| %>
+    <tr>
+      <th scope='row'><%= counter %></td>
+      <% counter += 1 %>
+      <td>
+        <%= link_to payment_path(payment) do %>
+          Reservation ID: #<%= payment.id %>
+        <% end %>
+      </td>
+      <td><%= payment.total_price %></td>
+      <td><%= payment.status %></td>
+      </tr>
+      <% end %>
+    </table>
+    <% if @payments.empty? %>
+      <div>You don't have any reservation yet.</div>
     <% end %>
-  </li>
-<% end %>
-</ul>
+  </div>
+</div>

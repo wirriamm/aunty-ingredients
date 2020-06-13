@@ -35,13 +35,13 @@
       <% @my_orders.each do |order| %>
       <tr>
         <th scope='row'><%= counter %></td>
-          <% counter += 1 %>
-          <td><%= order.listing.name %></td>
-          <td><%= order.quantity_ordered %></td>
-          <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
-          <td><%= order.user.email %></td>
-          <td><%= order.payment.status %></td>
-          <td>Button</td>
+        <% counter += 1 %>
+        <td><%= order.listing.name %></td>
+        <td><%= order.quantity_ordered %></td>
+        <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.payment.status %></td>
+        <td>Button</td>
         </tr>
         <% end %>
       </table>
