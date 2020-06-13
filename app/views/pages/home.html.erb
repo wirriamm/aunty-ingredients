@@ -1,14 +1,21 @@
-<div class='banner text-center'>
-  <h1><strong> Welcome to Aunty's Market</strong></h1>
-  <h3>Buy and sell your extra ingredients with ease!</h3>
-</div>
+<% content_for :navbar do %>
+  <div class='banner text-center'>
+    <h1><strong> Welcome to Aunty's Market</strong></h1>
+    <h3>Buy and sell your extra ingredients with ease!</h3>
+  </div>
+<% end %>
 
-<div class="container card-trip p-3">
+<div class="">
   <h1>Listings near you</h1>
-  <div class="grid p-3">
-    <!-- TODO: filter by distance  -->
+  <div class="grid-container">
+    <div class="row">
+      <div class="col-3">
+        <%= render partial: 'shared/listing', collection: @listings, class: 'col-3' %>
+      </div>
+    </div>
+    <!-- TODO: filter by d
+      istance  -->
     <!-- TODO: collapsible with a View More button  -->
-    <%= render partial: 'shared/listing', collection: @listings %>
   </div>
 </div>
 
