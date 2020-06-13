@@ -1,15 +1,19 @@
 class ListingsController < ApplicationController
-  # before_action :check_user?, only: [ :edit ]
+  before_action :check_user?, only: [ :edit, :update, :destroy ]
 
   def index
-    @listings = Listing.where(user: current_user)
+    @listings = Listing.where(user: current_user, delete_status: false)
     @my_orders = retrieve_orders_from_listing
   end
 
   def show
     @listing = Listing.find(params[:id])
-    @order = Order.new
-    @in_cart = check_listing_in_cart?
+    if @listing.delete_status
+      redirect_to listings_path
+    else
+      @order = Order.new
+      @in_cart = check_listing_in_cart?
+    end
   end
 
   def new
@@ -28,19 +32,9 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    # raise
-    if check_user?
-      @listing = Listing.find(params[:id])
-    else
-      redirect_to listings_path
-    end
   end
 
   def update
-    @listing = Listing.find(params[:id])
-
-    # @listing.update(params.require(:listing).permit(:name, :description, :quantity_available, :listing_price_pq)) if check_user?
-
     if @listing.update(listing_params)
       redirect_to listing_path(@listing)
     else
@@ -50,8 +44,12 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing = Listing.find(params[:id])
-    @listing.destroy
-    redirect_to listings_path
+    @listing.delete_status = true
+    if @listing.save
+      redirect_to listings_path
+    else
+      redirect_to listing_path(@listing), alert: "Error deleting your listing."
+    end
   end
 
   private
@@ -62,7 +60,9 @@ class ListingsController < ApplicationController
 
   def check_user?
     @listing = Listing.find(params[:id])
-    current_user == @listing.user
+    if @listing.user != current_user
+      redirect_to listings_path, alert: "You are not authorized."
+    end
   end
 
   def check_listing_in_cart?

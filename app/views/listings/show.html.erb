@@ -1,14 +1,12 @@
-<div class="container">
-  <div class="row m-0 p-0">
-    <% if current_user == @listing.user %>
-      <div class="col">
-        <%= link_to "Delete", listing_path(@listing), method: :delete  %>
-      </div>
-      <div class="col text-right">
-        <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-primary" %>
-      </div>
-    <% end  %>
+<div class="d-flex flex-row-reverse my-3">
+  <% if current_user == @listing.user %>
+  <div class="mx-1">
+    <%= link_to "Delete", listing_path(@listing), method: :delete, class: "btn btn-danger"%>
   </div>
+  <div class="mx-1">
+    <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-primary" %>
+  </div>
+  <% end  %>
 </div>
 
 <div class="p-3">
