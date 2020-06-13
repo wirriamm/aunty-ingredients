@@ -20,7 +20,8 @@
     </div> -->
     <%= form_tag root_path, method: :get, class: "form-inline my-2 my-lg-0 flex-grow-1 mx-5" do %>
       <%= text_field_tag :query,
-      params[:query],
+      # params[:query],
+      nil,
       class: "form-control" "mr-sm-2 flex-grow-1",
       placeholder: "Search for ingredients"
     %>
