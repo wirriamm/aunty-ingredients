@@ -1,9 +1,10 @@
-
-<%= simple_form_for(@listing) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :quantity_available %>
-  <%= f.input :listing_price_pq, input_html: {value: number_to_currency(f.object.listing_price_pq)} %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <%= simple_form_for(@listing) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :quantity_available %>
+    <%= f.input :listing_price_pq, input_html: {value: number_to_currency(f.object.listing_price_pq)} %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+</div>
