@@ -1,7 +1,9 @@
-<%= simple_form_for(@listing) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :quantity_available %>
-  <%= f.input :listing_price_pq %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for(@listing) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :quantity_available %>
+    <%= f.input :listing_price_pq %>
+    <%= f.submit %>
+  <% end %>
+</div>

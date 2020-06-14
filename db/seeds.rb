@@ -9,9 +9,9 @@
 require 'open-uri'
 
 puts "Cleaning DB"
-Payment.destroy_all
-Order.destroy_all
-Listing.destroy_all
+# Payment.destroy_all
+# Order.destroy_all
+# Listing.destroy_all
 User.destroy_all
 
 puts "Seeding 4 users"
@@ -155,18 +155,21 @@ puts "Seeding orders"
 order1 = Order.create!(
         listing: rice,
         user: john,
-        quantity_ordered: 1
+        quantity_ordered: 1,
+        order_price_pq: rice.listing_price_pq
     )
 
 order2 = Order.create!(
         listing: bell_pepper,
         user: john,
-        quantity_ordered: 1
+        quantity_ordered: 1,
+        order_price_pq: bell_pepper.listing_price_pq
     )
 
 order3 = Order.create!(
         listing: nutella,
         user: john,
-        quantity_ordered: 1
+        quantity_ordered: 1,
+        order_price_pq: nutella.listing_price_pq
     )
 puts "Orders seeded"

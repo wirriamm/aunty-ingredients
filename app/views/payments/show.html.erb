@@ -1,18 +1,44 @@
-<h3><strong>Reservation ID: #<%= @payment.id %></strong></h3><br>
-Reservation Total: $<%= number_to_currency(@payment.total_price) %><br>
-Reservation Status: <%= @payment.status %><br>
-<br>
+<div class="container">
+  <div class="card-trip mt-3 mb-5 p-3">
+    <h3 class='mb-1'><strong>Reservation ID: #<%= @payment.id %></strong></h3>
+    Reservation Total: <%= number_to_currency(@payment.total_price) %><br>
+    Reservation Status: <%= @payment.status %><br>
+    <br>
 
-<strong>Items Reserved:</strong><br>
-<ul>
-<% @orders.each do |order| %>
-  <li>
-    <%= order.listing.name.capitalize %>
-    (Quantity: <%= order.quantity_ordered %>):
-    $<%= number_to_currency(order.quantity_ordered * order.order_price_pq)  %> |
-    From: <%= order.listing.user.email %>
-  </li>
-<% end %>
-</ul>
+    <table class='table'>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Seller</th>
+        <th scope="col">Status</th>
+        <!-- TODO: add a button for action -->
+        <!-- <th scope="col">Button</th> -->
+      </tr>
+    </thead>
+    <% counter = 1 %>
+    <% @orders.each do |order| %>
+    <tr>
+      <th scope='row'><%= counter %></th>
+      <% counter += 1 %>
+      <td><%= order.listing.name %></td>
+      <td><%= order.quantity_ordered %></td>
+      <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
+      <td><%= order.listing.user.email %></td>
+      <td><%= order.payment.status %></td>
+      <!-- TODO: add a button for action -->
+      <!-- <td>Button</td> -->
+      </tr>
+      <% end %>
+    </table>
 
-<%= link_to "Back", payments_path  %>
+    <% if @orders.empty? %>
+      <div>You don't have any confirmed order.</div>
+    <% end %>
+
+
+    <%= link_to "Back", payments_path  %>
+  </div>
+</div>

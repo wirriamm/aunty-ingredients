@@ -16,36 +16,38 @@
   <!-- TODO: collapsible with a View More button  -->
 </div>
 
-<div class="card-trip mt-3 mb-5 p-3">
-  <h1 class="my-3">My Listing Transactions</h1>
-  <table class='table'>
-    <thead>
+  <div class="card-trip mt-3 mb-5 p-3">
+    <h1 class="my-3">My Listing Transactions</h1>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Item</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total Price</th>
+          <th scope="col">Buyer</th>
+          <th scope="col">Status</th>
+          <!-- TODO: Add a button for action -->
+          <!-- <th scope="col">Button</th> -->
+        </tr>
+      </thead>
+      <% counter = 1 %>
+      <% @my_orders.each do |order| %>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Item</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Total Price</th>
-        <th scope="col">Buyer</th>
-        <th scope="col">Status</th>
-        <th scope="col">Button</th>
-      </tr>
-    </thead>
-    <% counter = 1 %>
-    <% @my_orders.each do |order| %>
-    <tr>
-      <th scope='row'><%= counter %></td>
+        <th scope='row'><%= counter %></th>
         <% counter += 1 %>
         <td><%= order.listing.name %></td>
         <td><%= order.quantity_ordered %></td>
         <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
         <td><%= order.user.email %></td>
         <td><%= order.payment.status %></td>
-        <td>Button</td>
-      </tr>
-      <% end %>
-    </table>
-    <% if @my_orders.empty? %>
-      <div>You don't have any confirmed order.</div>
+        <!-- TODO: Add a button for action -->
+        <!-- <td>Button</td> -->
+        </tr>
+        <% end %>
+      </table>
+      <% if @my_orders.empty? %>
+        <div>You don't have any confirmed order.</div>
     <% end %>
 </div>
 

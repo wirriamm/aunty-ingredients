@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :check_user?, only: [:update, :destroy]
 
   def index
     orders = Order.where(user: current_user, completed: false)
@@ -35,7 +36,6 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
     @order.quantity_ordered = params[:order][:quantity_ordered]
     if validate_quantity?(@order)
       if @order.save
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    Order.find(params[:id]).destroy
+    @order.destroy
     redirect_to orders_path
   end
 
@@ -69,5 +69,13 @@ class OrdersController < ApplicationController
   # create
   def existing_orders_for_listing
     Order.where(user: current_user, listing: @listing, completed: false)
+  end
+
+  #update, #destroy
+  def check_user?
+    @order = Order.find(params[:id])
+    if @order.user != current_user
+      redirect_to orders_path, alert: "You are not authorized."
+    end
   end
 end
