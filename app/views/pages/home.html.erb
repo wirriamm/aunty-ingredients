@@ -5,21 +5,20 @@
   </div>
 <% end %>
 
-<div class="">
-  <h1>Listings near you</h1>
-  <div class="grid-container">
-    <div class="row">
-        <%= render partial: 'shared/listing', collection: @listings, class: 'col-3' %>
-    </div>
-    <!-- TODO: filter by distance  -->
-    <!-- TODO: collapsible with a View More button  -->
+<h2>Listings near you</h2>
+<div class="grid-container">
+  <div class="row">
+      <%= render partial: 'shared/listing', collection: @listings %>
   </div>
+  <!-- TODO: filter by distance  -->
+  <!-- TODO: collapsible with a View More button  -->
 </div>
 
-<div class="container card-trip p-3">
-  <h1>New Listings</h1>
-  <div class="grid p-3">
-    <!-- TODO: collapsible with a View More button  -->
-    <%= render partial: 'shared/listing', collection: @listings %>
+<h2>New Listings</h2>
+<div class="grid-container">
+  <div class="row">
+      <%= render partial: 'shared/listing', collection: @listings %>
   </div>
+  <!-- TODO: filter by distance  -->
+  <!-- TODO: collapsible with a View More button  -->
 </div>

@@ -1,53 +1,51 @@
-<div class="container">
-
-  <div class="card-trip mt-3 mb-5 p-3">
-    <div class="d-flex justify-content-between">
-        <h1 class="">My Listings</h1>
-        <div>
-          <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
-        </div>
+<div class="d-flex justify-content-between">
+    <h2>My Listings</h2>
+    <div>
+      <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
     </div>
-    <div class="grid">
-     <% if @listings.any? %>
-     <%= render partial: 'shared/listing', collection: @listings %>
+</div>
+
+<div class="grid-container">
+  <div class="row">
+    <% if @listings.any? %>
+      <%= render partial: 'shared/listing', collection: @listings %>
     <% else %>
       <p>You don't have any listing.</p>
     <% end %>
-
-    </div>
   </div>
+  <!-- TODO: collapsible with a View More button  -->
+</div>
 
-  <div class="card-trip mt-3 mb-5 p-3">
-    <h1 class="my-3">My Listing Transactions</h1>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Item</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Total Price</th>
-          <th scope="col">Buyer</th>
-          <th scope="col">Status</th>
-          <th scope="col">Button</th>
-        </tr>
-      </thead>
-      <% counter = 1 %>
-      <% @my_orders.each do |order| %>
+<div class="card-trip mt-3 mb-5 p-3">
+  <h1 class="my-3">My Listing Transactions</h1>
+  <table class='table'>
+    <thead>
       <tr>
-        <th scope='row'><%= counter %></td>
-          <% counter += 1 %>
-          <td><%= order.listing.name %></td>
-          <td><%= order.quantity_ordered %></td>
-          <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
-          <td><%= order.user.email %></td>
-          <td><%= order.payment.status %></td>
-          <td>Button</td>
-        </tr>
-        <% end %>
-      </table>
-      <% if @my_orders.empty? %>
-        <div>You don't have any confirmed order.</div>
+        <th scope="col">#</th>
+        <th scope="col">Item</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Buyer</th>
+        <th scope="col">Status</th>
+        <th scope="col">Button</th>
+      </tr>
+    </thead>
+    <% counter = 1 %>
+    <% @my_orders.each do |order| %>
+    <tr>
+      <th scope='row'><%= counter %></td>
+        <% counter += 1 %>
+        <td><%= order.listing.name %></td>
+        <td><%= order.quantity_ordered %></td>
+        <td><%= number_to_currency(order.quantity_ordered * order.quantity_ordered) %></td>
+        <td><%= order.user.email %></td>
+        <td><%= order.payment.status %></td>
+        <td>Button</td>
+      </tr>
       <% end %>
-  </div>
+    </table>
+    <% if @my_orders.empty? %>
+      <div>You don't have any confirmed order.</div>
+    <% end %>
 </div>
 

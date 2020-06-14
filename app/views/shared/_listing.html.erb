@@ -1,23 +1,20 @@
-<div class="col-12 col-md-6 col-lg-4">
-<div>
-  <div class="card border-light m-3" style="width: 12rem;">
+<div class="p-2 col-12 col-md-6 col-lg-4 col-xl-3">
+  <%= link_to listing_path(listing), style: "text-decoration: none; color: inherit;" do %>
+  <div class="card border-light h-100 hover">
     <% if listing.photo.attached? %>
-      <%= cl_image_tag(listing.photo.key, crop: :fill, class: 'card-img-top') %>
+      <%= cl_image_tag listing.photo.key, crop: :fill, class: 'card-img-top card-img-crop' %>
     <% else %>
-      <%= image_tag "https://source.unsplash.com/featured/?#{listing.name}", alt: "alttext", class: 'card-img-top' %>
+      <%= image_tag "https://source.unsplash.com/featured/?#{listing.name}", alt: "alttext", class: 'card-img-top card-img-crop' %>
     <% end %>
 
-    <div class="card-body py-1 px-0">
-      <p class="card-text font-weight-bold my-0">
-        <%= link_to listing_path(listing) do %>
-        <h2><%= listing.name.capitalize %></h2>
-      <% end %></p>
-      <p class="card-text my-0"><%= number_to_currency(listing.listing_price_pq) %></p>
+    <div class="card-body">
+        <h3 class="card-title"><%= listing.name.capitalize %></h3>
+      <p class="card-text"><%= number_to_currency(listing.listing_price_pq) %></p>
       <!-- TODO: set maximum words to be displayed -->
-      <p class="card-text my-0"><%= listing.description.capitalize %></p>
+      <p class="card-text"><%= listing.description.capitalize %></p>
       <!-- TODO: show listed xx ago -->
-      <p class="card-text mt-1">Listed xx ago.</p>
+      <p class="card-text">Listed xx ago.</p>
     </div>
   </div>
-  </div>
+  <% end %>
 </div>
