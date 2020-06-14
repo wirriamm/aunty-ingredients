@@ -1,10 +1,11 @@
 <h1>My Cart</h1>
+
 <div>
   <%= render @orders  %>
 </div>
-<br>
-<div class="container">
-  <div class="row justify-content-between">
+
+<div class="inner-container">
+  <div class="d-flex justify-content-between">
     <div class="col">
       <h3><strong>Total Price: <%= number_to_currency(@total_price) %></strong></h3>
     </div>
@@ -12,11 +13,11 @@
       <p></p>
     <% else %>
       <div class="col text-right">
-      <%= simple_form_for(@payment) do |f| %>
-        <%= f.input :total_price, :as => :hidden, :input_html => { :value => @total_price } %>
-        <%= f.input :status, :as => :hidden, :input_html => { :value => "incomplete" } %>
-        <%= f.submit 'Checkout and Reserve', class: "btn btn-primary" %>
-      <% end %>
+        <%= simple_form_for(@payment) do |f| %>
+          <%= f.input :total_price, :as => :hidden, :input_html => { :value => @total_price } %>
+          <%= f.input :status, :as => :hidden, :input_html => { :value => "incomplete" } %>
+          <%= f.submit 'Checkout and Reserve', class: "btn btn-primary" %>
+        <% end %>
       </div>
     <% end %>
   </div>

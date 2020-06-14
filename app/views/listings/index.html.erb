@@ -1,21 +1,20 @@
-<div class="container">
-
-  <div class="card-trip mt-3 mb-5 p-3">
-    <div class="d-flex justify-content-between">
-        <h1 class="">My Listings</h1>
-        <div>
-          <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
-        </div>
+<div class="d-flex justify-content-between">
+    <h2>My Listings</h2>
+    <div>
+      <%= link_to "New Listing", new_listing_path, class: "btn btn-primary" %>
     </div>
-    <div class="grid">
-     <% if @listings.any? %>
-     <%= render partial: 'shared/listing', collection: @listings %>
+</div>
+
+<div class="grid-container">
+  <div class="row">
+    <% if @listings.any? %>
+      <%= render partial: 'shared/listing', collection: @listings %>
     <% else %>
       <p>You don't have any listing.</p>
     <% end %>
-
-    </div>
   </div>
+  <!-- TODO: collapsible with a View More button  -->
+</div>
 
   <div class="card-trip mt-3 mb-5 p-3">
     <h1 class="my-3">My Listing Transactions</h1>
@@ -49,7 +48,6 @@
       </table>
       <% if @my_orders.empty? %>
         <div>You don't have any confirmed order.</div>
-      <% end %>
-  </div>
+    <% end %>
 </div>
 
